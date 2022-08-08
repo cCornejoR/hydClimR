@@ -1,5 +1,10 @@
+title: hydClimR
 url: https://ccornejor.github.io/hydClimR/
 template:
   bootstrap: 5
   bootswatch: flatly
+navbar:
+  structure:
+    left:  [intro, reference, articles, tutorials, news]
+    right: [search, github]
 

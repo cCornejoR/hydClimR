@@ -1,12 +1,14 @@
-Package: hydClimR
-Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Package: RWeatherTools
+Title: Download and Pre-Process Satelital and weather stations data in R.
+Version: 0.15.0
+Date: 2022-08-01
+Authors@R: c(person(given = c("Crhistian", "E."), family = "Cornejo Ruiz", 
+           role = c("aut","cre"), email = "crhistian.cornejo03@gmail.com"))
+Maintainer: Crhistian Cornejo <crhistian.cornejo03@gmail.com>
+Description: Download and Pre-Process Global Satelital Climate and handling water stations data for PERU in R.
 License: GPL (>= 3)
+Depends:
+    R (>= 4.2.1)
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/cCornejoR/hydClimR,
@@ -14,9 +16,42 @@ URL: https://github.com/cCornejoR/hydClimR,
 BugReports: https://github.com/cCornejoR/hydClimR/issues
 RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
-Imports: 
-    lifecycle
 Suggests: 
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+Imports:
+  lifecycle,
+	doParallel,
+	dplyr,
+	foreach,
+	fs,
+	gganimate,
+	ggplot2,
+	ggthemes,
+	glue,
+	hydroTSM,
+	lubridate,
+	ncdf4,
+	parallel,
+	pbapply,
+	plotly,
+	purrr,
+	R.utils,
+	raster,
+	RColorBrewer,
+	rgdal,
+	rgeos,
+	senamhiR,
+	sf,
+	sp,
+	stringr,
+	terra,
+	tibble,
+	tictoc,
+	tidyr,
+	utils,
+	xfun,
+	leaflet,
+	SmartEDA
+

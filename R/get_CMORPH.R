@@ -27,7 +27,7 @@
 #' files <- base::list.files(path = paste0(dsn,'/download_CMORPH/daily/0.25deg/'),
 #' pattern = "*.nc$",all.files=TRUE, full.names= T)
 #' subsetting_CMORPH.nc <- function(
-    #'    path_files = files,
+#'    path_files = files,
 #'    roi = c(-86,-66,-20,2),
 #'    vars = list (Lat = 'lat',
 #'                 Long = 'lon',
