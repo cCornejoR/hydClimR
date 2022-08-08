@@ -6,8 +6,17 @@ Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/cCornejoR/hydClimR
+URL: https://github.com/cCornejoR/hydClimR,
+    https://ccornejor.github.io/hydClimR/
 BugReports: https://github.com/cCornejoR/hydClimR/issues
+RoxygenNote: 7.2.1
+Roxygen: list(markdown = TRUE)
+Imports: 
+    lifecycle
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
