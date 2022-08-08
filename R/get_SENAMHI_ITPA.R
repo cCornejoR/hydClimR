@@ -3,7 +3,7 @@
 #' @description Obtain information from SENAMHI on Advanced Thermo-Pluviometric information from existing stations, this information is available from 2011 to the present.
 #' You can quickly generate an Exploratory Data Analysis for the entire requested data set.
 #' @param year_filter character string year from where the data with information available for that particular year are granted
-#' @param station character vector of stations names optained from \code{link{stations_ITPA_SENAMHI}}
+#' @param station character vector of stations names optained from \code{\link{stations_ITPA_SENAMHI}}
 #' @param export_csv logical, If \code{TRUE} it will export the table as a .csv file on yout local home working directory.
 #' @param fast_EDA logical. Compute a fast Exploratory Data Analysis of the information.
 #' @return If fast_EDA is TRUE will return a list with several information form SENAMHI ITPA,
@@ -182,14 +182,14 @@ get_ITPA_SENAMHI <- function(
 ## obtener estaciones que existen en el filtro de datos -------------------------------------------
 ####################################################################################################
 
-#' @title Get the available stations filter by year(s) for use in the function \code{link{get_ITPA_SENAMHI}}.
-#' @description Get the available stations filter by year(s) for use in the function \code{link{get_ITPA_SENAMHI}}.
+#' @title Get the available stations filter by year(s) for use in the function \code{\link{get_ITPA_SENAMHI}}.
+#' @description Get the available stations filter by year(s) for use in the function \code{\link{get_ITPA_SENAMHI}}.
 #' @param names vector. Vector names for use in the function to search matching with the information from the database.
 #' @param years Interger year from where the data with information available for that particular year are granted.Default: 2011:2015
 #' @param lonlat logical, if \code{TRUE} will returning a tibble with longitude and latitude, this is needed if you want
 #' to plot it. Default: FALSE
 #' @param plot_stations logical, \code{TRUE} will be plot on a Open Streat Map by leaflet the ubication of the stations matched. Default: FALSE
-#' @return Names of the stations to use in \code{link{get_ITPA_SENAMHI}}
+#' @return Names of the stations to use in \code{\link{get_ITPA_SENAMHI}}
 #' @examples
 #' \dontrun{
 #' if(interactive()){

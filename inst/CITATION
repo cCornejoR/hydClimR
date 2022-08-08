@@ -1,0 +1,11 @@
+bibentry(
+  bibtype = "Manual",
+  author  = person("Crhistian", "Cornejo",
+                email = "crhistian.cornejo03@gmail.com",
+                role = c("aut", "cre"),
+                comment = c(ORCID = '0000-0001-8916-2855')),
+  title   = "hydClimR: Downlod and Pre-process Satalite climate data for hydrological aplications in R",
+  year    = "2022",
+  note = "R package version 0.15.0",
+  url     = "https://github.com/cCornejoR/hydClimR",
+)

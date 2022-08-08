@@ -1,9 +1,11 @@
-Package: RWeatherTools
+Package: hydClimR
 Title: Download and Pre-Process Satelital and weather stations data in R.
 Version: 0.15.0
 Date: 2022-08-01
-Authors@R: c(person(given = c("Crhistian", "E."), family = "Cornejo Ruiz", 
-           role = c("aut","cre"), email = "crhistian.cornejo03@gmail.com"))
+Authors@R: person("Crhistian","Cornejo",
+           role = c("aut","cre"), 
+           email = "crhistian.cornejo03@gmail.com",
+           comment = c(ORCID = '0000-0001-8916-2855'))
 Maintainer: Crhistian Cornejo <crhistian.cornejo03@gmail.com>
 Description: Download and Pre-Process Global Satelital Climate and handling water stations data for PERU in R.
 License: GPL (>= 3)
