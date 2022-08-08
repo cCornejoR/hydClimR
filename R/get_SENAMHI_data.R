@@ -11,7 +11,7 @@
 #' @param convert2monthly logical.If \code{TRUE} will return the data in monthly values.
 #' @param convert2daily logical. If \code{TRUE} will return the data in daily values (this just works for precipitation data).
 #' @param na.rm logical. \code{TRUE} for remove NA's values from data if \code{convert2monthly} is \code{TRUE}. \code{FALSE} will return the monthly mean values convert2monthly NA's.
-#'
+#' @param vars character. Variables to found in the database from SEAMHI and return.
 #' @return
 #'
 #' A matrix with each station data of variable request, values of precipitation on (mm/hour, mm/day), temperature values on (°C) and
@@ -19,7 +19,7 @@
 #'
 #'
 #' @importFrom senamhiR senamhiR
-#' @importFrom dplyr select filter rename mutate
+#' @importFrom dplyr select filter rename mutate  %>%
 #' @importFrom tidyr complete pivot_wider
 #' @importFrom hydroTSM daily2monthly.data.frame
 #' @importFrom tibble rownames_to_column as_tibble
@@ -175,7 +175,7 @@ get_SENAMHI_data <- function(
     ## 2montlhy
     if(convert2monthly == TRUE){
 
-      stop("Sorry for wind variable monthly convertion aren't available")
+      stop("Sorry for wind variable monthly convertion aren't available", call. = FALSE)
 
     }
 
@@ -198,7 +198,7 @@ get_SENAMHI_data <- function(
 #' if both are FALSE, only a two-column dataframe will be returned.
 #'
 #' @importFrom senamhiR station_search
-#' @importFrom dplyr filter select
+#' @importFrom dplyr filter select %>%
 #' @importFrom ggplot2 ggplot aes geom_point theme_minimal
 #' @importFrom plotly ggplotly
 #'
@@ -234,11 +234,11 @@ get_codes <- function(
   # errors messages
 
   if (is.null(stations_names)) {
-    stop('Please enter names of stations of your interest to find the codes')
+    stop('Please enter names of stations of your interest to find the codes', call. = FALSE)
   }
 
   if (get_LongLat == FALSE & plotStations == TRUE) {
-    stop("LongLat needed!, if you want to get the plot, get_LongLat must be 'TRUE'")
+    stop("LongLat needed!, if you want to get the plot, get_LongLat must be 'TRUE'", call. = FALSE)
   }
 
   if (type == 'Met') {

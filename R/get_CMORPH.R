@@ -2,7 +2,7 @@
 ################################################################################
 #' @title Function to subset CMORPH raster data.
 #'
-#' @param files list. Path to the files where the CMORPH.nc are downloaded.
+#' @param path_files list. Path to the files where the CMORPH.nc are downloaded.
 #' @param file_out path. Path where the new files will be saved. By default they are saved in the same path as
 #' the downloaded files and are automatically renamed.
 #' @param vars list. Variables necessary to perform the subsetting, do not change it for CMORPH grids.
@@ -61,9 +61,6 @@ subsetting_CMORPH.nc <- function(
   xmax    <- roi[2]
   ymin    <- roi[3]
   ymax    <- roi[4]
-
-  require(foreach)
-  require(doParallel)
 
   # Creating subsseting CMORPH GRID
 
@@ -162,7 +159,6 @@ subsetting_CMORPH.nc <- function(
 #' @importFrom parallel detectCores makeCluster
 #' @importFrom glue glue
 #' @importFrom xfun dir_create
-#' @importFrom base substring gsub sort list.files
 #' @importFrom lubridate year
 #' @importFrom doParallel registerDoParallel
 #' @importFrom foreach getDoParWorkers foreach

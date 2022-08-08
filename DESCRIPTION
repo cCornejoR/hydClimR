@@ -10,7 +10,7 @@ Maintainer: Crhistian Cornejo <crhistian.cornejo03@gmail.com>
 Description: Download and Pre-Process Global Satelital Climate and handling water stations data for PERU in R.
 License: GPL (>= 3)
 Depends:
-    R (>= 4.2.1)
+    R (>= 4.1.0)
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/cCornejoR/hydClimR,
@@ -27,6 +27,12 @@ Imports:
   plyr,
   purrr,
   dplyr,
+  ggplot2,
+  R.utils,
+  RColorBrewer,
+  plotly,
+  tidyr,
+  gdalUtilities,
   readr,
   leaflet.extras,
   RCurl,

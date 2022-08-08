@@ -17,12 +17,6 @@
 #' @param verbose logical. If TRUE this will show the task process for the parallel process.
 #' @param roi numeric. Vector with xmax, xmin, ymax, ymin values for a region for subsetting the data.
 #'
-#' @import  ncdf4
-#' @import  RCurl
-#' @import  tictoc
-#' @import  glue
-#' @import  foreach
-#' @import  doParallel
 #'
 #' @author Crhistian Cornejo
 #'
@@ -66,13 +60,9 @@ download_CHIRPS <- function(
   tres <- tolower(tres)
   roi <- roi
 
-  # require(foreach)
-  # require(doParallel)
-  # require(dplyr)
-
   #setting error's messages
   if (is.null(sres) & tres == 'daily') {
-    stop("for daily download, please specify the spatial resolution param: 'sres'\n")
+    stop("for daily download, please specify the spatial resolution param: 'sres'\n", call. = FALSE)
   }
 
   ## conditionals for the function!

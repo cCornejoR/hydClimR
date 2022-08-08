@@ -13,6 +13,8 @@ subsetting_CMORPH.nc(
 )
 }
 \arguments{
+\item{path_files}{list. Path to the files where the CMORPH.nc are downloaded.}
+
 \item{roi}{numeric. Vector with xmax, xmin, ymax, ymin values for a region for subsetting the data.1}
 
 \item{vars}{list. Variables necessary to perform the subsetting, do not change it for CMORPH grids.}
@@ -23,8 +25,6 @@ the downloaded files and are automatically renamed.}
 \item{cores}{numeric. Number of cores to be used for the download. By default,
 it automatically detects how many cores there are on your computer and
 subtracts 1 to prevent it from slowing down.}
-
-\item{files}{list. Path to the files where the CMORPH.nc are downloaded.}
 }
 \value{
 subsetting tif.

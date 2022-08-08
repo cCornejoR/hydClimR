@@ -49,7 +49,7 @@
 #' @importFrom xfun dir_create
 #' @importFrom raster brick crs projection stack rasterToPoints writeRaster
 #' @importFrom sp proj4string CRS spTransform is.projected
-#' @importFrom dplyr filter
+#' @importFrom dplyr filter %>%
 #' @importFrom stringr str_sub
 #' @importFrom terra crop
 #' @importFrom tidyr pivot_longer
@@ -76,7 +76,7 @@ climatology <- function(
 
 
   if (return_clip == TRUE & is.null(shapefile)) {
-    stop('For return clipping area you need a shapefile object!!')
+    stop('For return clipping area you need a shapefile object!!', call. = FALSE)
   }
 
   options(scipen = 1000,warn = -1)
@@ -93,7 +93,7 @@ climatology <- function(
     shapefile <- sp::spTransform(shapefile, raster::crs(brick_rst))
 
     if(sp::is.projected(shapefile)){
-      stop('Error: Subbasins dont have projection')
+      stop('Error: Subbasins dont have projection', call. = FALSE)
     }  else {
       shapefile <- sp::spTransform(shapefile, raster::projection(brick_rst))
 

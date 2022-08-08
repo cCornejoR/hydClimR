@@ -26,6 +26,8 @@ get_SENAMHI_data(
 \item{convert2daily}{logical. If \code{TRUE} will return the data in daily values (this just works for precipitation data).}
 
 \item{na.rm}{logical. \code{TRUE} for remove NA's values from data if \code{convert2monthly} is \code{TRUE}. \code{FALSE} will return the monthly mean values convert2monthly NA's.}
+
+\item{vars}{character. Variables to found in the database from SEAMHI and return.}
 }
 \value{
 A matrix with each station data of variable request, values of precipitation on (mm/hour, mm/day), temperature values on (°C) and

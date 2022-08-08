@@ -162,10 +162,10 @@ subsseting_TERRACLIMATE <- function(
   require(dplyr)
   ### error's messages
   if (is.null(shapefile)) {
-    stop('For subsetting TERRACLIMATE grid data you need a shapefile object')
+    stop('For subsetting TERRACLIMATE grid data you need a shapefile object', call. = FALSE)
   }
   if (!vars_id %in% c('aet','def','swe','q','soil','PDSI', 'pet','ppt','srad','tmax','tmin','vap','vpd','ws') ) {
-    stop('The variable ID does not exist in TERRACLIMATE data sets')
+    stop('The variable ID does not exist in TERRACLIMATE data sets', call. = FALSE)
   }
 
   ## loading variables

@@ -22,7 +22,7 @@ get_ITPA_SENAMHI(
 }
 \value{
 If fast_EDA is TRUE will return a list with several information form SENAMHI ITPA,
-firts list: 'list[\link{1}]' is a tibble with the information of stations request, second list: 'list[\link{2}]',
+firts list: '\code{list[[1]]}' is a tibble with the information of stations request, second list: '\code{list[[2]]}',
 is the results from fast Exploratory Data ANALYSIS from the variables in the tibble. Also it export a .csv file
 to your local home working directory.
 }

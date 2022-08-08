@@ -7,7 +7,7 @@
 #' @param export_csv logical, If \code{TRUE} it will export the table as a .csv file on yout local home working directory.
 #' @param fast_EDA logical. Compute a fast Exploratory Data Analysis of the information.
 #' @return If fast_EDA is TRUE will return a list with several information form SENAMHI ITPA,
-#' firts list: 'list[[1]]' is a tibble with the information of stations request, second list: 'list[[2]]',
+#' firts list: '\code{list[[1]]}' is a tibble with the information of stations request, second list: '\code{list[[2]]}',
 #' is the results from fast Exploratory Data ANALYSIS from the variables in the tibble. Also it export a .csv file
 #' to your local home working directory.
 #' @examples
@@ -28,7 +28,7 @@
 #' @importFrom readr read_csv
 #' @importFrom purrr map
 #' @importFrom plyr ldply
-#' @importFrom dplyr select mutate group_by filter ungroup arrange
+#' @importFrom dplyr select mutate group_by filter ungroup arrange %>%
 #' @importFrom tidyr pivot_longer complete pivot_wider
 #' @importFrom SmartEDA ExpData ExpNumStat ExpNumViz ExpOutQQ
 #' @importFrom tibble as_tibble
@@ -43,10 +43,7 @@ get_ITPA_SENAMHI <- function(
 
   options ( warn = - 1)
   # data getting from: 'https://www.senamhi.gob.pe/site/lvera/red_rpm2.php'
-  # if (COLLAPSE == FALSE & fast_EDA == TRUE) {
-  #   stop('For computing Exploratory Data Analysis argument "COLLAPSE" must be TRUE')
-  # }
-  # scrapping my database
+
   base <- 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTq0UTKU1u7tNVK56sLs-zDUtWhNctDquBMT7eHAoTHmstdA6gQS_Lx31W4f0G9kw/pub?gid='
   final <- '&single=true&output=csv'
   sheets <- c(1698968598,2086715188,1568222612,
@@ -78,17 +75,16 @@ get_ITPA_SENAMHI <- function(
   cat('\f')
   message('Reading data and returning data request from database...')
   data_csv =  plyr::ldply(url_list, function(...)readr::read_csv(...,col_types = list()), .progress = 'text') %>%
-    dplyr::filter(., ESTACION %in% station & AÑO == year_filter) %>%
-    tibble::as_tibble() %>% dplyr::arrange(ESTACION)
+    dplyr::filter(.,ESTACION %in% station & YEAR %in% year_filter) %>%
+    tibble::as_tibble() %>%
+    dplyr::arrange(ESTACION)
 
   cat('\f')
 
-  ##handwling data
-
   df_export <- data_csv %>%
-    dplyr::select(CODIGO,ESTACION, AÑO, MES, VAR,12:42 ) %>%
+    dplyr::select(CODIGO,ESTACION, YEAR, MES, VAR,12:42 ) %>%
     tidyr::pivot_longer(6:36, names_to = 'DAYS', values_to = 'VAR_VALUES') %>%
-    dplyr::mutate(DATES = as.Date(paste(AÑO,MES,DAYS,sep = '-'), format= '%Y-%m-%d'),
+    dplyr::mutate(DATES = as.Date(paste(YEAR,MES,DAYS,sep = '-'), format= '%Y-%m-%d'),
                   VAR_VALUES = as.numeric(VAR_VALUES)) %>%
     dplyr::group_by(DATES) %>%
     dplyr::filter(!any(is.na(DATES))) %>%
@@ -99,14 +95,13 @@ get_ITPA_SENAMHI <- function(
     tidyr::pivot_wider(names_from = VAR, values_from = VAR_VALUES) %>%
     dplyr::arrange(CODIGO)
 
-  df_export <- within(df_export, PP24[PP24< 0] <- NA)
-  df_export <- within(df_export, TMAX[TMAX< 0] <- NA)
-  df_export <- within(df_export, TMIN[TMIN< 0] <- NA)
+  df_export <- within(df_export, PP24[PP24 < 0] <- NA)
+  df_export <- within(df_export, TMAX[TMAX = -999] <- NA)
+  df_export <- within(df_export, TMIN[TMIN = -999] <- NA)
   df_export <- df_export %>% dplyr::mutate(TAVG = (TMAX+TMIN)/2)
 
   if (fast_EDA == TRUE) {
 
-    ###EDA
 
     EDA_1 <- SmartEDA::ExpData(data=df_export,type=2)
     EDA_1 <- EDA_1[-1:-3,c(-1,-3)]
@@ -118,7 +113,6 @@ get_ITPA_SENAMHI <- function(
     f <- SmartEDA::ExpOutliers(df_export, varlist = c("PP24","TMAX","TMIN"), method = "3xStDev",  capping = c(0.1, 0.9), outflag = TRUE) %>%
       plyr::ldply(., tibble::as_tibble)
 
-    #plots EDA
     plot_1 <- SmartEDA::ExpNumViz(df_export,target=NULL,type=1,nlim=10,col=NULL,Page=c(2,2))
 
     plot_2 <- SmartEDA::ExpOutQQ(df_export,
@@ -177,7 +171,6 @@ get_ITPA_SENAMHI <- function(
 }
 
 
-
 ####################################################################################################
 ## obtener estaciones que existen en el filtro de datos -------------------------------------------
 ####################################################################################################
@@ -205,10 +198,11 @@ get_ITPA_SENAMHI <- function(
 #' @export
 #' @importFrom plyr ldply
 #' @importFrom readr read_csv
-#' @importFrom dplyr filter arrange select mutate
+#' @importFrom dplyr filter arrange select mutate  %>%
 #' @importFrom tibble as_tibble
 #' @importFrom leaflet leaflet addTiles addMarkers
 #' @importFrom leaflet.extras addResetMapButton addSearchFeatures searchFeaturesOptions
+
 stations_ITPA_SENAMHI <- function(
     names=NULL,
     years = 2011:2015,
@@ -219,7 +213,7 @@ stations_ITPA_SENAMHI <- function(
   if (!lonlat  & plot_stations == TRUE) {
     stop('"lonlat" argument must be TRUE for plot stations ubications', call. = FALSE)
   }
-  # If `name` is not NULL, filter by name
+
   if (!is.null(names)) {
 
     base <- 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTq0UTKU1u7tNVK56sLs-zDUtWhNctDquBMT7eHAoTHmstdA6gQS_Lx31W4f0G9kw/pub?gid='
@@ -258,10 +252,10 @@ stations_ITPA_SENAMHI <- function(
 
     filter_one <- data_csv %>%
       dplyr::filter(.,grepl(names, data_csv$ESTACION, ignore.case = TRUE)) %>%
-      dplyr::filter(AÑO %in% as.character(years)) %>%
+      dplyr::filter(YEAR %in% as.character(years)) %>%
       tibble::as_tibble() %>%
       dplyr::arrange(ESTACION) %>%
-      dplyr::select(CODIGO,ESTACION,LONSIG,LATSIG,ALT, AÑO) %>%
+      dplyr::select(CODIGO,ESTACION,LONSIG,LATSIG,ALT, YEAR) %>%
       unique()
 
     if (lonlat == TRUE & plot_stations == TRUE) {

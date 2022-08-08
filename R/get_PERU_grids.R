@@ -42,8 +42,6 @@ download_RAIN4PE <- function(
 
 ){
 
-  require(ncdf4)
-
   if (openPDF == TRUE) {
     url_pdf <- 'https://datapub.gfz-potsdam.de/download/10.5880.PIK.2020.010enouiv/2020-010_Fernandes-Palomino_Rain4PE_data-description.pdf'
     browseURL(url_pdf)
@@ -229,7 +227,6 @@ download_PISCO <- function(
   shp = NULL,
   name_roi = NULL
 ){
-  require(ncdf4)
 
   ##web scrapping to download PISCO data
   base_url <- 'https://iridl.ldeo.columbia.edu/SOURCES/.SENAMHI/.HSR/.PISCO/'
@@ -244,7 +241,7 @@ download_PISCO <- function(
       shp <- sp::spTransform(shp, sp::CRS("+proj=longlat +datum=WGS84 +no_defs "))
       if(!base::class(shp) == 'SpatialPolygonsDataFrame') stop('subs shuold be a SpatialPolygonsDataFrame object')
       if(sp::is.projected(shp)){
-        stop('Error: basin dont have projection')
+        stop('Error: basin dont have projection', call. = FALSE)
       }  else {
         shp <- sp::spTransform(shp, sp::CRS("+proj=longlat +datum=WGS84 +no_defs "))
       }
@@ -393,9 +390,9 @@ download_PISCO <- function(
 
       shp <- rgdal::readOGR(shp)
       shp <- sp::spTransform(shp, sp::CRS("+proj=longlat +datum=WGS84 +no_defs "))
-      if(!base::class(shp) == 'SpatialPolygonsDataFrame') stop('subs shuold be a SpatialPolygonsDataFrame object')
+      if(!base::class(shp) == 'SpatialPolygonsDataFrame') stop('subs shuold be a SpatialPolygonsDataFrame object', call. = FALSE)
       if(sp::is.projected(shp)){
-        stop('Error: basin dont have projection')
+        stop('Error: basin dont have projection', call. = FALSE)
       }  else {
         shp <- sp::spTransform(shp, sp::CRS("+proj=longlat +datum=WGS84 +no_defs "))
       }
@@ -523,9 +520,9 @@ download_PISCO <- function(
 
       shp <- rgdal::readOGR(shp)
       shp <- sp::spTransform(shp, sp::CRS("+proj=longlat +datum=WGS84 +no_defs "))
-      if(!base::class(shp) == 'SpatialPolygonsDataFrame') stop('subs shuold be a SpatialPolygonsDataFrame object')
+      if(!base::class(shp) == 'SpatialPolygonsDataFrame') stop('subs shuold be a SpatialPolygonsDataFrame object', call. = FALSE)
       if(sp::is.projected(shp)){
-        stop('Error: basin dont have projection')
+        stop('Error: basin dont have projection', call. = FALSE)
       }  else {
         shp <- sp::spTransform(shp, sp::CRS("+proj=longlat +datum=WGS84 +no_defs "))
       }
