@@ -26,14 +26,15 @@
 
 #' @rdname download_TERRACLIMATE
 #' @export
-#' @import parallel
-#' @import tictoc
-#' @import glue
-#' @import xfun
-#' @import doParallel
-#' @import foreach
+#' @importFrom parallel detectCores makeCluster
+#' @importFrom tictoc tic toc tic.log tic.clearlog
+#' @importFrom glue glue
+#' @importFrom xfun dir_exists dir_create
+#' @importFrom doParallel registerDoParallel
+#' @importFrom foreach foreach
 #'
-#'
+
+
 download_TERRACLIMATE <- function(
 
   vars_id  = c('aet','def','swe','q','soil','PDSI', 'pet','ppt','srad','tmax','tmin','vap','vpd','ws'),
@@ -128,23 +129,25 @@ download_TERRACLIMATE <- function(
 #' @family subsetting functions
 #' @author Crhistian Cornejo
 #'
-#' @import tictoc
-#' @import sp
-#' @import terra
-#' @import fs
-#' @import purrr
-#' @import raster
-#' @import glue
-#' @import xfun
-#' @import ggplot2
-#' @import RColorBrewer
-#' @import sf
-#' @import plotly
+#' @importFrom tictoc tic toc
+#' @importFrom sp proj4string CRS
+#' @importFrom terra vect rast crop mask
+#' @importFrom fs dir_ls
+#' @importFrom purrr map
+#' @importFrom raster projectRaster writeRaster stackApply rasterToPoints
+#' @importFrom glue glue
+#' @importFrom xfun dir_exists dir_create
+#' @importFrom ggplot2 ggplot theme_void geom_tile aes scale_fill_gradientn geom_sf theme unit element_text labs ggsave
+#' @importFrom RColorBrewer brewer.pal
+#' @importFrom sf st_as_sf
+#' @importFrom plotly ggplotly
+
 
 
 subsseting_TERRACLIMATE <- function(
 
-  vars_id  = c('aet','def','swe','q','soil','PDSI', 'pet','ppt','srad','tmax','tmin','vap','vpd','ws'),
+  vars_id  = c('aet','def','swe','q','soil','PDSI', 'pet','ppt',
+               'srad','tmax','tmin','vap','vpd','ws'),
   dsn = getwd(),
   shapefile = NULL,
   years_sub = 1958:1960,

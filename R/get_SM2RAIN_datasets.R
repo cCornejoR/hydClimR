@@ -13,12 +13,13 @@
 #' subtracts 1 to prevent it from slowing down.
 #' @param years numeric. Years Date(s) for which you want to download the data.
 #'
-#' @import  ncdf4
-#' @import  RCurl
-#' @import  tictoc
-#' @import  glue
-#' @import  foreach
-#' @import  doParallel
+
+#' @importFrom parallel detectCores makeCluster
+#' @importFrom glue glue
+#' @importFrom xfun dir_create
+#' @importFrom doParallel registerDoParallel
+#' @importFrom tictoc tic toc tic.log tic.clearlog
+#' @importFrom foreach foreach
 #'
 #' @family Download grid data
 #'
@@ -46,6 +47,7 @@
 #'
 #' @export
 #'
+
 
 download_SM2RAIN <- function(
 

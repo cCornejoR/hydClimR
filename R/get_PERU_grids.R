@@ -10,10 +10,12 @@
 #' @param dsn path. Directory to which you want to store the downloaded data
 #' @param name_roi character. Name of the area or basin with which the subsetting to the grid will be done.
 #'
-#' @import  ncdf4
-#' @import  RCurl
-#' @import  tictoc
-#' @import  glue
+#' @importFrom glue glue
+#' @importFrom xfun dir_create
+#' @importFrom R.utils gunzip
+#' @importFrom rgdal readOGR
+#' @importFrom sp spTransform CRS is.projected bbox
+#' @importFrom raster extent
 #'
 #' @family Download grid data
 #'
@@ -30,7 +32,6 @@
 #' download_RAIN4PE(openPDF = FALSE, shp = shp, name_roi = 'Cuenca_Test')
 #' }
 #' @export
-
 
 download_RAIN4PE <- function(
 
@@ -194,11 +195,13 @@ download_RAIN4PE <- function(
 #' @param version character. For now just 'stable' version is available.
 #' @param shp Path where the shapefile is alocate. Keep on \code{NULL} for download hourly data.
 #' @param name_roi character. Name of the area or basin with which the subsetting to the grid will be done.
-#' @import  ncdf4
-#' @import  RCurl
-#' @import  tictoc
-#' @import  glue
 #'
+#' @importFrom rgdal readOGR
+#' @importFrom sp spTransform CRS is.projected bbox
+#' @importFrom raster extent
+#' @importFrom glue glue
+#' @importFrom xfun dir_create
+#' @importFrom utils untar
 #'
 #' @author Crhistian Cornejo
 #'
@@ -214,6 +217,7 @@ download_RAIN4PE <- function(
 #' download_PISCO(var = var[1], dsn = getwd(), shp = shp, tres = 'monthly', version = 'stable')
 #' }
 #' @export
+
 
 
 download_PISCO <- function(
@@ -660,13 +664,5 @@ download_PISCO <- function(
 }#end function!
 
 
-# shp <- 'G:/Mi unidad/MyPackages-R/eClimTools/Data/SHPs/cuenca_mayo.shp'
-
-# download_PISCO(var = 'Temp',
-#                dsn = getwd(),
-#                tres = 'daily',
-#                version = 'stable',
-#                shp = shp,
-#                name_roi = 'Subsetting')
 
 

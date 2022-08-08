@@ -14,12 +14,17 @@
 #' @param Temporal. character. Only \code{'day'} is aceptting for swat, but if you want to extract monthly data,
 #' write as \code{'month'}
 #'
-#' @import raster
-#' @import tictoc
-#' @import glue
-#' @import pbapply
-#' @import parallel
-#' @author Crhistian Cornejo
+#' @importFrom parallel detectCores makeCluster clusterEvalQ clusterExport stopCluster
+#' @importFrom raster brick projection nlayers ncell extract as.matrix projectRaster
+#' @importFrom sp proj4string CRS is.projected spTransform coordinates
+#' @importFrom glue glue
+#' @importFrom xfun dir_create
+#' @importFrom tictoc tic toc tic.log tic.clearlog
+#' @importFrom pbapply pblapply
+#' @importFrom rgeos gCentroid
+#' @importFrom dplyr mutate rename select
+#' @importFrom ggplot2 fortify ggplot geom_polygon aes alpha geom_point scale_fill_manual labs theme element_rect
+#' @importFrom ggthemes theme_pander
 #'
 #' @family Inputs SWAT
 #'
@@ -43,6 +48,7 @@
 #' }
 #'
 #'@export
+
 
 grid_pcp2SWAT <- function(
 
@@ -223,11 +229,17 @@ grid_pcp2SWAT <- function(
 #' @param Star_Date. character. Initial date to extract the information.
 #' @param Temporal. character. Only \code{'day'} is aceptting for swat, but if you want to extract monthly data, write as \code{'month'}
 #'
-#' @import raster
-#' @import tictoc
-#' @import glue
-#' @import pbapply
-#' @import parallel
+#' @importFrom parallel detectCores makeCluster clusterEvalQ clusterExport stopCluster
+#' @importFrom raster brick projection nlayers ncell extract as.matrix projectRaster
+#' @importFrom sp proj4string CRS is.projected spTransform coordinates
+#' @importFrom glue glue
+#' @importFrom xfun dir_create
+#' @importFrom tictoc tic toc tic.log tic.clearlog
+#' @importFrom pbapply pblapply
+#' @importFrom rgeos gCentroid
+#' @importFrom dplyr mutate rename select
+#' @importFrom ggplot2 fortify ggplot geom_polygon aes alpha geom_point scale_fill_manual labs theme element_rect
+#' @importFrom ggthemes theme_pander
 #'
 #' @author Crhistian Cornejo
 #'

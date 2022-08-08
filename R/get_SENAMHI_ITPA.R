@@ -42,11 +42,11 @@ get_ITPA_SENAMHI <- function(
     fast_EDA = TRUE){
 
   options ( warn = - 1)
-  ## data getting from: 'https://www.senamhi.gob.pe/site/lvera/red_rpm2.php'
+  # data getting from: 'https://www.senamhi.gob.pe/site/lvera/red_rpm2.php'
   # if (COLLAPSE == FALSE & fast_EDA == TRUE) {
   #   stop('For computing Exploratory Data Analysis argument "COLLAPSE" must be TRUE')
   # }
-  ## scrapping my database
+  # scrapping my database
   base <- 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTq0UTKU1u7tNVK56sLs-zDUtWhNctDquBMT7eHAoTHmstdA6gQS_Lx31W4f0G9kw/pub?gid='
   final <- '&single=true&output=csv'
   sheets <- c(1698968598,2086715188,1568222612,

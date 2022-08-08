@@ -38,14 +38,12 @@
 #'  }
 #' }
 #' @rdname subsetting_CMORPH.nc
-#' @export
-#' @import parallel
-#' @import raster
-#' @import doParallel
-#' @import tictoc
-#' @import foreach
-#' @import ncdf4
-#'
+#' @importFrom parallel detectCores makeCluster
+#' @importFrom raster stack
+#' @importFrom doParallel registerDoParallel
+#' @importFrom tictoc tic toc
+#' @importFrom foreach foreach
+#' @importFrom ncdf4 nc_open ncvar_get ncatt_get ncdim_def ncvar_def nc_create ncvar_put nc_close
 subsetting_CMORPH.nc <- function(
     path_files = getwd(),
     roi = c(-86,-66,-20,2),
@@ -161,12 +159,15 @@ subsetting_CMORPH.nc <- function(
 #' @param subsetting logical. If \code{TRUE} all downloaded netcdf's will be subsetting to the extension set to \code{roi}.
 #' @param roi numeric. Vector with xmax, xmin, ymax, ymin values for a region for subsetting the data.
 #'
-#' @import  ncdf4
-#' @import  RCurl
-#' @import  tictoc
-#' @import  glue
-#' @import  foreach
-#' @import  doParallel
+#' @importFrom parallel detectCores makeCluster
+#' @importFrom glue glue
+#' @importFrom xfun dir_create
+#' @importFrom base substring gsub sort list.files
+#' @importFrom lubridate year
+#' @importFrom doParallel registerDoParallel
+#' @importFrom foreach getDoParWorkers foreach
+#' @importFrom tictoc tic toc tic.log tic.clearlog
+#' @importFrom utils download.file
 #'
 #' @family Download grid data
 #'
@@ -188,7 +189,6 @@ subsetting_CMORPH.nc <- function(
 #' }
 #'
 #' @export
-
 
 download_CMORPH <- function(
 

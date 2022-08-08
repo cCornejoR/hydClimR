@@ -45,18 +45,18 @@
 #' }
 #' @rdname climatology
 #' @export
-#' @import glue
-#' @import xfun
-#' @import raster
-#' @import sp
-#' @import dplyr
-#' @import stringr
-#' @import terra
-#' @import tidyr
-#' @import ggplot2
-#' @import RColorBrewer
-#' @import sf
-#' @import gganimate
+#' @importFrom glue glue
+#' @importFrom xfun dir_create
+#' @importFrom raster brick crs projection stack rasterToPoints writeRaster
+#' @importFrom sp proj4string CRS spTransform is.projected
+#' @importFrom dplyr filter
+#' @importFrom stringr str_sub
+#' @importFrom terra crop
+#' @importFrom tidyr pivot_longer
+#' @importFrom ggplot2 ggplot theme_void geom_tile aes scale_fill_gradientn geom_sf theme unit element_text labs theme_dark facet_wrap element_rect element_blank ggsave
+#' @importFrom RColorBrewer brewer.pal
+#' @importFrom sf st_as_sf
+#' @importFrom gganimate transition_states shadow_wake animate gifski_renderer
 climatology <- function(
 
   start_date = '1981-01-01',

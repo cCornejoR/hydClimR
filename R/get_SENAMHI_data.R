@@ -18,12 +18,11 @@
 #' wind data on direction and velocity unit (m/s)
 #'
 #'
-#' @import  senamhiR
-#' @import  dplyr
-#' @import  tidyr
-#' @import  hydroTSM
-#' @import  tibble
-#' @import  ggplot2
+#' @importFrom senamhiR senamhiR
+#' @importFrom dplyr select filter rename mutate
+#' @importFrom tidyr complete pivot_wider
+#' @importFrom hydroTSM daily2monthly.data.frame
+#' @importFrom tibble rownames_to_column as_tibble
 #'
 #' @author Crhistian Cornejo
 #'
@@ -33,13 +32,16 @@
 #' @examples
 #' \dontrun{
 #' #example for get the codes and pre-process for get_SENAMHI_data function
-#' names <- c('Asuncion','Augusto','llica','honda','llagaden','namora','jesus','la victoria','celendin')
+#' names <- c('Asuncion','Augusto','llica',
+#' 'honda','llagaden','namora',
+#' 'jesus','la victoria','celendin')
 #' codes <- get_codes(stations_names = names,
 #'                   type = 'Meteorological',
 #'                   get_LongLat = TRUE,
 #'                   plotStations = TRUE)
 #'
-#'  codes_for_function <- do.call(rbind, lapply(codes[1], data.frame, stringsAsFactors=FALSE)) %>%
+#'  codes_for_function <- do.call(rbind, lapply(codes[1], data.frame,
+#'  stringsAsFactors=FALSE)) %>%
 #'  dplyr::arrange(StationID) %>%
 #'  dplyr::select(StationID) %>%
 #'  purrr::as_vector()
@@ -55,11 +57,14 @@
 
 #' #getting the names matching names as vector for replace on the export
 #' real_names <- do.call(rbind, lapply(codes[1], data.frame, stringsAsFactors=FALSE)) %>%
-#'  dplyr::filter(StationID %in% codes_for_function) %>%
-#'  dplyr::arrange(StationID) %>% dplyr::select(1) %>% as.data.frame() %>% purrr::as_vector(.)
+#'  dplyr::filter(StationID %in%
+#'  codes_for_function) %>%
+#'  dplyr::arrange(StationID) %>%
+#'  dplyr::select(1) %>% as.data.frame() %>% purrr::as_vector(.)
 #'
 #' nombres_est <- as.vector(real_names)
-#' colnames(Data_T) <- c('Date',rep(paste0('tmax_',nombres_est),1),rep(paste0('tmin_',nombres_est),1))
+#' colnames(Data_T) <- c('Date',rep(paste0('tmax_',nombres_est),1),
+#' rep(paste0('tmin_',nombres_est),1))
 
 #' #for precipitation
 #' Data_P <- get_SENAMHI_data(cod = codes_for_function,
@@ -83,6 +88,7 @@
 #'
 #' @export
 #'
+
 
 get_SENAMHI_data <- function(
     cod = NULL,
@@ -191,11 +197,10 @@ get_SENAMHI_data <- function(
 #' If \code{get_LongLat} and \code{plotStations} are TRUE a list with the table and a plot of the stations is returned,
 #' if both are FALSE, only a two-column dataframe will be returned.
 #'
-#' @import dplyr
-#' @import senamhiR
-#' @import tidyr
-#' @import ggplot2
-#' @import plotly
+#' @importFrom senamhiR station_search
+#' @importFrom dplyr filter select
+#' @importFrom ggplot2 ggplot aes geom_point theme_minimal
+#' @importFrom plotly ggplotly
 #'
 #' @author Crhistian Cornejo
 #'
@@ -219,7 +224,7 @@ get_SENAMHI_data <- function(
 #' }
 #'
 #' @export
-#'
+
 get_codes <- function(
     stations_names = NULL,
     type = c('Met','Hid'),

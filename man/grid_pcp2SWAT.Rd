@@ -59,7 +59,4 @@ grid_pcp2SWAT(
 Other Inputs SWAT: 
 \code{\link{grid_tas2SWAT}()}
 }
-\author{
-Crhistian Cornejo
-}
 \concept{Inputs SWAT}

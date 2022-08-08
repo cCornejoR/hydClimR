@@ -35,7 +35,14 @@
 #' }
 #'
 #' @export
-
+#' @importFrom parallel detectCores makeCluster
+#' @importFrom glue glue
+#' @importFrom xfun dir_create
+#' @importFrom tictoc tic toc
+#' @importFrom doParallel registerDoParallel
+#' @importFrom R.utils gunzip
+#' @importFrom raster extent xmin ymax xmax ymin
+#' @importFrom gdalUtilities gdal_translate
 download_CHIRPS <- function(
 
   tres  = NULL,
