@@ -9,7 +9,9 @@
 #' @examples
 #' \dontrun{
 #' if(interactive()){
-#'  #EXAMPLE1
+#'  donwload_SOILDGRIDS(path_saved = 'C:/RPackages/hydClimR/usefull_data/SOILSGRID',
+#'                      variables = c("silt", "clay", "sand", "wrb"),
+#'                      layers = c('0-5cm_mean','5-15cm_mean'))
 #'  }
 #' }
 #' @rdname donwload_SOILDGRIDS
@@ -150,7 +152,5 @@ donwload_SOILDGRIDS <- function(
 
 }
 
-# donwload_SOILDGRIDS(path_saved = 'C:/RPackages/hydClimR/usefull_data/SOILSGRID',
-#                     variables = c("silt", "clay", "sand", "wrb"),
-#                     layers = c('0-5cm_mean','5-15cm_mean'))
+
 
