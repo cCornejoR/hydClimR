@@ -2,7 +2,8 @@
 % Please edit documentation in R/get_SENAMHI_ITPA.R
 \name{get_ITPA_SENAMHI}
 \alias{get_ITPA_SENAMHI}
-\title{Function to obtain the values of Meteorological stations from the SENAMHI Advanced Thermo-Pluviometric Information.}
+\title{Obtain information from SENAMHI on Advanced Thermo-Pluviometric information from existing stations, this information is available from 2011 to the present.
+You can quickly generate an Exploratory Data Analysis for the entire requested data set.}
 \usage{
 get_ITPA_SENAMHI(
   year_filter,
@@ -44,3 +45,10 @@ missing_values <- test[[3]]
  }
 }
 }
+\seealso{
+Other SENAMHI: 
+\code{\link{get_SENAMHI_data}()},
+\code{\link{get_codes}()},
+\code{\link{stations_ITPA_SENAMHI}()}
+}
+\concept{SENAMHI}

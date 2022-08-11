@@ -52,8 +52,11 @@ passive microwave and infrared data at high spatial and temporal resolution.. J.
 }
 \seealso{
 Other Download grid data: 
+\code{\link{donwload_SOILDGRIDS}()},
+\code{\link{download_CHIRPS}()},
 \code{\link{download_RAIN4PE}()},
-\code{\link{download_SM2RAIN}()}
+\code{\link{download_SM2RAIN}()},
+\code{\link{download_TERRACLIMATE}()}
 }
 \author{
 Crhistian Cornejo

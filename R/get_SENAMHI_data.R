@@ -1,10 +1,7 @@
 ################################################################################
 #### FUNCTIONS TO GET AND HANDLING DATA FROM SENAMHI WATER STATIONS (M, H)
 ################################################################################
-
-#' @title Function to get SENAMHI data from different variables.
-#' @description Get information from multiple station and variables from Servicio Nacional de Meteorología e Hidrológia del Perú (SENAMHI).
-
+#' @title Get information from multiple station and variables from Servicio Nacional de Meteorología e Hidrológia del Perú (SENAMHI).
 #' @param cod character. Codes of the station you want to download, to see the codes use \code{link{get_codes}}. For the moment just for Conventional stations data are available.
 #' @param start_date character. Start date to filter the data what you want to download. Please write as \code{'yyyy-mm-dd'}.
 #' @param end_date character. End date to filter the data what you want to download. Please write as \code{'yyyy-mm-dd'}.
@@ -17,7 +14,7 @@
 #' A matrix with each station data of variable request, values of precipitation on (mm/hour, mm/day), temperature values on (°C) and
 #' wind data on direction and velocity unit (m/s)
 #'
-#'
+#' @family SENAMHI
 #' @importFrom senamhiR senamhiR
 #' @importFrom dplyr select filter rename mutate  %>%
 #' @importFrom tidyr complete pivot_wider
@@ -187,12 +184,12 @@ get_SENAMHI_data <- function(
 #######################################
 ## get codes from senamhi stations
 #######################################
-#' @title Function to get codes of senamhi water stations.
+#' @title  Function to get codes of senamhi water stations.
 #' @param stations_names character. Names of the stations we want to download and get their code.
 #' @param type character. Type of stations from which the codes will be returned.
 #' @param get_LongLat logical. If \code{TRUE} Longitude and Latitude will added to the output dataframe. This needed for \code{plotStations} function.
 #' @param plotStations logical. \code{TRUE} will plot a graph of ubications of the stations and his altitude.
-#'
+#' @family SENAMHI
 #' @return
 #' If \code{get_LongLat} and \code{plotStations} are TRUE a list with the table and a plot of the stations is returned,
 #' if both are FALSE, only a two-column dataframe will be returned.

@@ -2,9 +2,7 @@
 #### Donwload TERRACLIMATE data sets
 ################################################################################
 
-#' @title Download global individual TERRACLIMATE data sets at 4km resolution.
-#'
-#' @description Download 14 climatic variables simultaneously from the TERRACLIMATE database at 4km resolution.
+#' @title Download 14 climatic variables simultaneously from the TERRACLIMATE database at 4km resolution.
 #' @param vars_id character. Name of variables what you want to download. for DEFAULT it download all
 #' variables available.
 #' @param years integer. Years from which you want to download the information, by DEFAULT it downloads all the
@@ -16,7 +14,7 @@
 #' a high-resolution global dataset of monthly climate and climatic water balance from 1958-2015, Scientific Data,
 #'
 #' @return Donwload TERRACLIMATE data sets to output directory.
-
+#' @family Download grid data
 #' @examples
 #' \dontrun{
 #' if(interactive()){
@@ -93,7 +91,6 @@ download_TERRACLIMATE <- function(
 ################################################################################
 
 #' @title Function to subset and aggregate TERRACLIMATE netcdfs and exported the stack as tif.
-#' @description Download 14 climatic variables simultaneously from the TERRACLIMATE database at 4km resolution.
 #' @param vars_id character. Name of variables what you want to do the subsetting. By DEFAULT it make the subset for
 #' all variables donwload on the folder create by \code{link{download_TERRACLIMATE}}.
 #' @param dsn character. Path where the output folders and files will be saved, Default: getwd()
@@ -110,7 +107,7 @@ download_TERRACLIMATE <- function(
 #' @references
 #' Abatzoglou, J.T., S.Z. Dobrowski, S.A. Parks, K.C. Hegewisch, 2018, Terraclimate,
 #' a high-resolution global dataset of monthly climate and climatic water balance from 1958-2015, Scientific Data,
-#'
+#' @family subsetting functions
 #' @examples
 #' \dontrun{
 #' if(interactive()){
@@ -126,9 +123,7 @@ download_TERRACLIMATE <- function(
 #' }
 #' @export
 #' @rdname subsseting_TERRACLIMATE
-#' @family subsetting functions
-#' @author Crhistian Cornejo
-#'
+#' @author Crhistian Cornejo#'
 #' @importFrom tictoc tic toc
 #' @importFrom sp proj4string CRS
 #' @importFrom terra vect rast crop mask

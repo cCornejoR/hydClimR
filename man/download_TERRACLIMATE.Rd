@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_TERRACLIMATE.R
 \name{download_TERRACLIMATE}
 \alias{download_TERRACLIMATE}
-\title{Download global individual TERRACLIMATE data sets at 4km resolution.}
+\title{Download 14 climatic variables simultaneously from the TERRACLIMATE database at 4km resolution.}
 \usage{
 download_TERRACLIMATE(
   vars_id = c("aet", "def", "swe", "q", "soil", "PDSI", "pet", "ppt", "srad", "tmax",
@@ -40,3 +40,12 @@ download_TERRACLIMATE(vars_id  = c('aet','ppt'), years = 2000:2002, cores = 4)
 Abatzoglou, J.T., S.Z. Dobrowski, S.A. Parks, K.C. Hegewisch, 2018, Terraclimate,
 a high-resolution global dataset of monthly climate and climatic water balance from 1958-2015, Scientific Data,
 }
+\seealso{
+Other Download grid data: 
+\code{\link{donwload_SOILDGRIDS}()},
+\code{\link{download_CHIRPS}()},
+\code{\link{download_CMORPH}()},
+\code{\link{download_RAIN4PE}()},
+\code{\link{download_SM2RAIN}()}
+}
+\concept{Download grid data}

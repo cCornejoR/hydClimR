@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_CHIRPS.R
 \name{download_CHIRPS}
 \alias{download_CHIRPS}
-\title{Function to download CHIRPS raster data global on daily and monthly scales}
+\title{Function to download CHIRPS raster data global on daily and monthly scales.}
 \usage{
 download_CHIRPS(
   tres = NULL,
@@ -37,7 +37,7 @@ subtracts 1 to prevent it from slowing down.}
 \item{roi}{numeric. Vector with xmax, xmin, ymax, ymin values for a region for subsetting the data.}
 }
 \description{
-Function to download CHIRPS raster data global on daily and monthly scales
+Function to download CHIRPS raster data global on daily and monthly scales.
 }
 \examples{
 \dontrun{
@@ -49,6 +49,15 @@ Function to download CHIRPS raster data global on daily and monthly scales
 \references{
 https://data.chc.ucsb.edu/products/CHIRPS-2.0/
 }
+\seealso{
+Other Download grid data: 
+\code{\link{donwload_SOILDGRIDS}()},
+\code{\link{download_CMORPH}()},
+\code{\link{download_RAIN4PE}()},
+\code{\link{download_SM2RAIN}()},
+\code{\link{download_TERRACLIMATE}()}
+}
 \author{
 Crhistian Cornejo
 }
+\concept{Download grid data}

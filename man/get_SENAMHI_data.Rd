@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_SENAMHI_data.R
 \name{get_SENAMHI_data}
 \alias{get_SENAMHI_data}
-\title{Function to get SENAMHI data from different variables.}
+\title{Get information from multiple station and variables from Servicio Nacional de Meteorología e Hidrológia del Perú (SENAMHI).}
 \usage{
 get_SENAMHI_data(
   cod = NULL,
@@ -93,6 +93,13 @@ write.csv(Data_P, '../SENAMHI_Prec_2000_2015_subdaily.csv')
 this functions make usefull easy wrangling download data from the package senamhiR from
 source("https://gitlab.com/snippets/1793256/raw");install("senamhiR")
 }
+\seealso{
+Other SENAMHI: 
+\code{\link{get_ITPA_SENAMHI}()},
+\code{\link{get_codes}()},
+\code{\link{stations_ITPA_SENAMHI}()}
+}
 \author{
 Crhistian Cornejo
 }
+\concept{SENAMHI}

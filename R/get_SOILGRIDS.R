@@ -1,11 +1,10 @@
-#' @title donwload_SOILDGRIDS
-#' @description Download SOILGRIDS datasets V2 for a roi area.
+#' @title Download SOILGRIDS datasets V2 for a roi area.
 #' @param path_saved character string to path directory where the data will save.Default: getwd()
 #' @param variables character string of variables what you want to download. Default: c("silt", "clay", "sand", "wrb")
 #' @param layers depth of the layers. Default: c("0-5cm_mean")
 #' @param roi vector of Longitude min. longitude max, latitude min and latitude max. Default: c(-86, -66, -20, 2) for Peru area.
 #' @return download tifs of variables request.
-
+#' @family Download grid data
 #' @examples
 #' \dontrun{
 #' if(interactive()){

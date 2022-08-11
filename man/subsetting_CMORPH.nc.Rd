@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_CMORPH.R
 \name{subsetting_CMORPH.nc}
 \alias{subsetting_CMORPH.nc}
-\title{Function to subset CMORPH raster data.}
+\title{Function to subset CMORPH raster data to a roi extension.}
 \usage{
 subsetting_CMORPH.nc(
   path_files = getwd(),
@@ -30,7 +30,7 @@ subtracts 1 to prevent it from slowing down.}
 subsetting tif.
 }
 \description{
-Function to subset CMORPH raster data.
+Function to subset CMORPH raster data to a roi extension.
 }
 \examples{
 \dontrun{

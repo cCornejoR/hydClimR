@@ -50,6 +50,13 @@ codes <- get_codes(stations_names = names,
 this functions make usefull easy wrangling download data from the package senamhiR from
 source("https://gitlab.com/snippets/1793256/raw");install("senamhiR")
 }
+\seealso{
+Other SENAMHI: 
+\code{\link{get_ITPA_SENAMHI}()},
+\code{\link{get_SENAMHI_data}()},
+\code{\link{stations_ITPA_SENAMHI}()}
+}
 \author{
 Crhistian Cornejo
 }
+\concept{SENAMHI}

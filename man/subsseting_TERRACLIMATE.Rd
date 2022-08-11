@@ -41,7 +41,7 @@ just the raster brick, Default: TRUE.}
 Subsettings exported raster tifs.
 }
 \description{
-Download 14 climatic variables simultaneously from the TERRACLIMATE database at 4km resolution.
+Function to subset and aggregate TERRACLIMATE netcdfs and exported the stack as tif.
 }
 \examples{
 \dontrun{
@@ -66,6 +66,6 @@ Other subsetting functions:
 \code{\link{subsetting_CMORPH.nc}()}
 }
 \author{
-Crhistian Cornejo
+Crhistian Cornejo#'
 }
 \concept{subsetting functions}

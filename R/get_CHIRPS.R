@@ -1,9 +1,7 @@
 ################################################################################
 #### FUNCTIONS TO GET CHIRPS PROUCT WITH SUBSETTING EXTENSION
 ################################################################################
-
-#' @title Function to download CHIRPS raster data global on daily and monthly scales
-#'
+#' @title Function to download CHIRPS raster data global on daily and monthly scales.
 #' @param tres character. Temporal resolution. \code{"daily"} or \code{"monthly"}
 #' @param sres numeric. Spatial resolution. \code{0.05} or \code{0.25}. Note
 #' that monthly data is only available at a resolution of 0.05 degrees.
@@ -16,7 +14,7 @@
 #' subtracts 1 to prevent it from slowing down.
 #' @param verbose logical. If TRUE this will show the task process for the parallel process.
 #' @param roi numeric. Vector with xmax, xmin, ymax, ymin values for a region for subsetting the data.
-#'
+#' @family Download grid data
 #'
 #' @author Crhistian Cornejo
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_SOILGRIDS.R
 \name{donwload_SOILDGRIDS}
 \alias{donwload_SOILDGRIDS}
-\title{donwload_SOILDGRIDS}
+\title{Download SOILGRIDS datasets V2 for a roi area.}
 \usage{
 donwload_SOILDGRIDS(
   path_saved = getwd(),
@@ -35,3 +35,12 @@ if(interactive()){
  }
 }
 }
+\seealso{
+Other Download grid data: 
+\code{\link{download_CHIRPS}()},
+\code{\link{download_CMORPH}()},
+\code{\link{download_RAIN4PE}()},
+\code{\link{download_SM2RAIN}()},
+\code{\link{download_TERRACLIMATE}()}
+}
+\concept{Download grid data}

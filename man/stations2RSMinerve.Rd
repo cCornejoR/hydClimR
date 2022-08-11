@@ -2,7 +2,8 @@
 % Please edit documentation in R/inputs_RSMINERVE.R
 \name{stations2RSMinerve}
 \alias{stations2RSMinerve}
-\title{Observerd gauge data to RS MINERVE database as input for modelling.}
+\title{Converter you excel sheets data of gauge time series into data base .csv for reading
+as input into RS Minerve platform for modelling.}
 \usage{
 stations2RSMinerve(
   path_file,
@@ -33,7 +34,7 @@ DataFrame ass DataBase for read in RSMinerve.
 }
 \description{
 Converter you excel sheets data of gauge time series into data base .csv for reading
-as input into RS Minerve.
+as input into RS Minerve platform for modelling.
 }
 \examples{
 \dontrun{
@@ -45,3 +46,10 @@ stations2RSMinerve(path_file = path_file)
  }
 }
 }
+\seealso{
+Other Inputs Hidrological models: 
+\code{\link{grid2RSMinerve}()},
+\code{\link{grid_pcp2SWAT}()},
+\code{\link{grid_tas2SWAT}()}
+}
+\concept{Inputs Hidrological models}

@@ -2,7 +2,8 @@
 % Please edit documentation in R/climatology.R
 \name{climatology}
 \alias{climatology}
-\title{Compute climatology of grid data for a extension area of a shapefile basin.}
+\title{Compute climatology of grid data for a extension area of a shapefile basin,
+with the possibility of creating a graph of the climatology and exporting a GIF.}
 \usage{
 climatology(
   start_date = "1981-01-01",
@@ -79,3 +80,4 @@ t <- climatology(years_omit = c(2005,2010),
 \author{
 Crhistian Cornejo
 }
+\concept{Grid Computting}

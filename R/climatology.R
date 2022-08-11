@@ -1,9 +1,7 @@
 ################################################################################
 #### Climatology
 ################################################################################
-#' @title Compute climatology of grid data for a extension area of a shapefile basin.
-#'
-#' @description  Compute climatology of grid data for a extension area of a shapefile basin,
+#' @title  Compute climatology of grid data for a extension area of a shapefile basin,
 #' with the possibility of creating a graph of the climatology and exporting a GIF.
 #' @param start_date character. Initial date from which the calculation of the climatology will be made,
 #' this will be introduce as 'yyyy-mm-dd'.
@@ -25,6 +23,7 @@
 #' all climatology outputs will be computed and returned just for shapefile extension. If FALSE
 #' return the climatology for the original grid data.
 #' @return grid montlhy mean climatology of grid input.
+#' @family Grid Computting
 #' @author Crhistian Cornejo
 #' @examples
 #' \dontrun{

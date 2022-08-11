@@ -57,10 +57,13 @@ grid_tas2SWAT (
 }
 }
 \seealso{
-Other Inputs SWAT: 
-\code{\link{grid_pcp2SWAT}()}
+Other Inputs Hidrological models: 
+\code{\link{grid2RSMinerve}()},
+\code{\link{grid_pcp2SWAT}()},
+\code{\link{stations2RSMinerve}()}
 }
 \author{
 Crhistian Cornejo
 }
+\concept{Inputs Hidrological models}
 \concept{Inputs SWAT}

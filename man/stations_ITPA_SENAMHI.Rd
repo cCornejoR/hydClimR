@@ -39,3 +39,10 @@ t <- stations_ITPA_SENAMHI(names = names,
  }
 }
 }
+\seealso{
+Other SENAMHI: 
+\code{\link{get_ITPA_SENAMHI}()},
+\code{\link{get_SENAMHI_data}()},
+\code{\link{get_codes}()}
+}
+\concept{SENAMHI}

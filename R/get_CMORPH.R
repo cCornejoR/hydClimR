@@ -1,7 +1,6 @@
 #### FUNCTION TO GET CMORPH GRID DATA WITH SUBSETTING IN A ROI EXTENSION
 ################################################################################
-#' @title Function to subset CMORPH raster data.
-#'
+#' @title  Function to subset CMORPH raster data to a roi extension.
 #' @param path_files list. Path to the files where the CMORPH.nc are downloaded.
 #' @param file_out path. Path where the new files will be saved. By default they are saved in the same path as
 #' the downloaded files and are automatically renamed.
@@ -141,11 +140,11 @@ subsetting_CMORPH.nc <- function(
   cat('-------- Finish subsetting!! -----------\n')
 }
 
+
+################################################################################
 #### FUNCTION TO GET CMORPH GRID DATA WITH SUBSETTING IN A ROI EXTENSION
 ################################################################################
-
 #' @title Function to download CMORPH raster data global on daily sacale at 25km.
-#'
 #' @param star_date numeric. Start Date(s) for which you want to download CMORPH data.
 #' @param end_date numeric. End Date(s) for which you want to download CMORPH data. recommended to download at least one year.
 #' @param dsn path. Directory to which you want to store the downloaded data.

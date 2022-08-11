@@ -1,6 +1,4 @@
-
-#' @title Function to obtain the values of Meteorological stations from the SENAMHI Advanced Thermo-Pluviometric Information.
-#' @description Obtain information from SENAMHI on Advanced Thermo-Pluviometric information from existing stations, this information is available from 2011 to the present.
+#' @title Obtain information from SENAMHI on Advanced Thermo-Pluviometric information from existing stations, this information is available from 2011 to the present.
 #' You can quickly generate an Exploratory Data Analysis for the entire requested data set.
 #' @param year_filter character string year from where the data with information available for that particular year are granted
 #' @param station character vector of stations names optained from \code{\link{stations_ITPA_SENAMHI}}
@@ -10,6 +8,7 @@
 #' firts list: '\code{list[[1]]}' is a tibble with the information of stations request, second list: '\code{list[[2]]}',
 #' is the results from fast Exploratory Data ANALYSIS from the variables in the tibble. Also it export a .csv file
 #' to your local home working directory.
+#' @family SENAMHI
 #' @examples
 #' \dontrun{
 #' if(interactive()){
@@ -176,13 +175,13 @@ get_ITPA_SENAMHI <- function(
 ####################################################################################################
 
 #' @title Get the available stations filter by year(s) for use in the function \code{\link{get_ITPA_SENAMHI}}.
-#' @description Get the available stations filter by year(s) for use in the function \code{\link{get_ITPA_SENAMHI}}.
 #' @param names vector. Vector names for use in the function to search matching with the information from the database.
 #' @param years Interger year from where the data with information available for that particular year are granted.Default: 2011:2015
 #' @param lonlat logical, if \code{TRUE} will returning a tibble with longitude and latitude, this is needed if you want
 #' to plot it. Default: FALSE
 #' @param plot_stations logical, \code{TRUE} will be plot on a Open Streat Map by leaflet the ubication of the stations matched. Default: FALSE
 #' @return Names of the stations to use in \code{\link{get_ITPA_SENAMHI}}
+#' @family SENAMHI
 #' @examples
 #' \dontrun{
 #' if(interactive()){

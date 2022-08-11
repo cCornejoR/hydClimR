@@ -50,8 +50,11 @@ Validation Results, and Emerging Applications. Meteorologische Zeitschrift, 22(1
 }
 \seealso{
 Other Download grid data: 
+\code{\link{donwload_SOILDGRIDS}()},
+\code{\link{download_CHIRPS}()},
 \code{\link{download_CMORPH}()},
-\code{\link{download_RAIN4PE}()}
+\code{\link{download_RAIN4PE}()},
+\code{\link{download_TERRACLIMATE}()}
 }
 \author{
 Crhistian Cornejo

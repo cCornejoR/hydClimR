@@ -2,10 +2,7 @@
 #### RAIN4PE
 ################################################################################
 
-#' @title Functions to download grid available data over PERU.
-#'
-#' @describeIn Download available data for PERÚ at 0.1 x 0.1 resolution of grid and subsetting to a roi area if require.
-#'
+#' @title Download available data for PERÚ at 0.1 x 0.1 resolution of grid and subsetting to a roi area if require.
 #' @param openPDF logical. If \code{TRUE} the PDF of the reference paper will be open. \code{FALSE} just donwload the grid data.
 #' @param dsn path. Directory to which you want to store the downloaded data
 #' @param name_roi character. Name of the area or basin with which the subsetting to the grid will be done.
@@ -184,9 +181,7 @@ download_RAIN4PE <- function(
 #### PISCO
 ################################################################################
 
-#' @title Download PISCO grid daily and monthly data and subsetting for a basin extend.
-#' @describeIn Download RAIN4PE grid at daily scale, PISCO at daily and monthly grid data and subsetting for a roi extend.
-#'
+#' @title  Download PISCO grid daily and monthly data and subsetting for a basin extend.#'
 #' @param var character. variables that will be downloaded by the function, \code{c('Prec', 'PET', 'Temp')} are available.
 #' @param dsn path. Directory to which you want to store the downloaded data.
 #' @param tres character. Temporal resolution. \code{"daily"} or \code{"monthly"}.
@@ -200,7 +195,6 @@ download_RAIN4PE <- function(
 #' @importFrom glue glue
 #' @importFrom xfun dir_create
 #' @importFrom utils untar
-#'
 #' @author Crhistian Cornejo
 #'
 #' @references Aybar, C., Fernández, C., Huerta, A., Lavado, W., Vega, F., & Felipe-Obando, O.G. (2019).

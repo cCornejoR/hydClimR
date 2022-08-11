@@ -1,8 +1,6 @@
 #### FUNCTION EXTRACT DATA FROM A DAILY GRID AND MAKE INPUTS FOR SWAT MODEL
 ################################################################################
-
-#' @title Function to extract Precipitation grid data from daily and make inputs for SWAT model
-#'
+#' @title  Function to extract Precipitation grid data from daily and make inputs for SWAT model
 #' @param pr brick or stack raster/netcdf grid format of precipitation.
 #' @param cores numeric. Number of cores to be used for the download. By default,
 #' it automatically detects how many cores there are on your computer and
@@ -26,7 +24,7 @@
 #' @importFrom ggplot2 fortify ggplot geom_polygon aes alpha geom_point scale_fill_manual labs theme element_rect
 #' @importFrom ggthemes theme_pander
 #'
-#' @family Inputs SWAT
+#' @family Inputs Hidrological models
 #'
 #' @examples \dontrun{
 #'
@@ -217,7 +215,6 @@ grid_pcp2SWAT <- function(
 ################################################################################
 
 #' @title Function to extract Temperature grid data from daily and make inputs for SWAT model
-#'
 #' @param tx brick or stack raster/netcdf grid format of maximun temperature.
 #' @param tn brick or stack raster/netcdf grid format of minimun temperature.
 #' @param cores numeric. Number of cores to be used for the download. By default,
@@ -240,7 +237,7 @@ grid_pcp2SWAT <- function(
 #' @importFrom dplyr mutate rename select %>%
 #' @importFrom ggplot2 fortify ggplot geom_polygon aes alpha geom_point scale_fill_manual labs theme element_rect
 #' @importFrom ggthemes theme_pander
-#'
+#' @family Inputs Hidrological models
 #' @author Crhistian Cornejo
 #'
 #' @family Inputs SWAT
