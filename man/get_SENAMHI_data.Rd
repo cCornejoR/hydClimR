@@ -84,7 +84,8 @@ real_names_p <- do.call(rbind, lapply(codes[1], data.frame, stringsAsFactors=FAL
  dplyr::arrange(StationID) \%>\% dplyr::select(1) \%>\% as.data.frame() \%>\% purrr::as_vector(.)
 
 nombres_est_p <- as.vector(real_names_p)
-colnames(Data_P) <- c('Date',rep(paste0('Prec07_',nombres_est),1),rep(paste0('Prec19_',nombres_est),1))
+colnames(Data_P) <- c('Date',rep(paste0('Prec07_',nombres_est),1),
+                             rep(paste0('Prec19_',nombres_est),1))
 write.csv(Data_P, '../SENAMHI_Prec_2000_2015_subdaily.csv')
 }
 

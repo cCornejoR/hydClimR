@@ -25,6 +25,7 @@ Suggests:
 VignetteBuilder: knitr
 Imports:
   lifecycle,
+  methods,
   plyr,
   purrr,
   dplyr,

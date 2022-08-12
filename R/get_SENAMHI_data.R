@@ -71,16 +71,15 @@
 #'                           convert2daily = FALSE,
 #'                           na.rm = FALSE,
 #'                           vars = 'pr')
-
 #' #getting the names matching names as vector for replace on the export of precipitation dataframe
 #'real_names_p <- do.call(rbind, lapply(codes[1], data.frame, stringsAsFactors=FALSE)) %>%
 #'  dplyr::filter(StationID %in% codes_for_function) %>%
 #'  dplyr::arrange(StationID) %>% dplyr::select(1) %>% as.data.frame() %>% purrr::as_vector(.)
 #'
 #' nombres_est_p <- as.vector(real_names_p)
-#' colnames(Data_P) <- c('Date',rep(paste0('Prec07_',nombres_est),1),rep(paste0('Prec19_',nombres_est),1))
+#' colnames(Data_P) <- c('Date',rep(paste0('Prec07_',nombres_est),1),
+#'                              rep(paste0('Prec19_',nombres_est),1))
 #' write.csv(Data_P, '../SENAMHI_Prec_2000_2015_subdaily.csv')
-
 #' }
 #'
 #' @export
