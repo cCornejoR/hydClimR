@@ -4,5 +4,6 @@ template:
   bootswatch: lux
   bslib:
     pkgdown-nav-height: 85px
-
+development:
+  mode: auto
 
