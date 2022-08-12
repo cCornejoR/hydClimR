@@ -20,7 +20,8 @@ RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Imports:
   lifecycle,
@@ -61,4 +62,8 @@ Imports:
 	utils,
 	xfun,
 	leaflet,
-	SmartEDA
+	SmartEDA,
+	readxl
+	exactextractr,
+	
+Config/testthat/edition: 3
