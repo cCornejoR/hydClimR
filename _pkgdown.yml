@@ -1,7 +1,7 @@
 url: https://ccornejor.github.io/hydClimR/
 template:
   bootstrap: 5
-  bootswatch: lux
+  bootswatch: Cyborg
   bslib:
     pkgdown-nav-height: 85px
 development:
