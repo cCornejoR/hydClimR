@@ -1,9 +1,14 @@
 url: https://ccornejor.github.io/hydClimR/
+
 template:
-  bootstrap: 5
-  bootswatch: Flatly
-  bslib:
+  params:
+    bootswatch: sandstone
+    bslib:
     pkgdown-nav-height: 85px
 development:
   mode: auto
+
+authors:
+  Crhistian Cornejo:
+    href: https://github.com/cCornejoR
 
