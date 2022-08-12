@@ -36,14 +36,15 @@
 #'    cores = 4)
 #'  }
 #' }
-#' @rdname subsetting_CMORPH.nc
+#' @rdname subsetting_CMORPH
 #' @importFrom parallel detectCores makeCluster
 #' @importFrom raster stack
 #' @importFrom doParallel registerDoParallel
 #' @importFrom tictoc tic toc
 #' @importFrom foreach foreach
 #' @importFrom ncdf4 nc_open ncvar_get ncatt_get ncdim_def ncvar_def nc_create ncvar_put nc_close
-subsetting_CMORPH.nc <- function(
+#'
+subsetting_CMORPH <- function(
     path_files = getwd(),
     roi = c(-86,-66,-20,2),
     vars = list (Lat = 'lat',
@@ -306,7 +307,7 @@ download_CMORPH <- function(
     stopCluster(cl)
 
     files <- base::list.files(path = paste0(dsn,'/download_CMORPH/daily/0.25deg/'), pattern = "*.nc$",all.files=TRUE, full.names= T)
-    subsetting_CMORPH.nc(path_files = files,roi = roi)
+    subsetting_CMORPH.(path_files = files,roi = roi)
     cat('\f')
     cat('----------------------------------------------------------------------\n')
     tictoc::toc(log = TRUE, quiet = TRUE)

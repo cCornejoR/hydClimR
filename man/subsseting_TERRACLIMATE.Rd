@@ -18,14 +18,14 @@ subsseting_TERRACLIMATE(
 }
 \arguments{
 \item{vars_id}{character. Name of variables what you want to do the subsetting. By DEFAULT it make the subset for
-all variables donwload on the folder create by \code{link{download_TERRACLIMATE}}.}
+all variables donwload on the folder create by \code{\link{download_TERRACLIMATE}}.}
 
 \item{dsn}{character. Path where the output folders and files will be saved, Default: getwd()}
 
 \item{shapefile}{SpatialPolygonDataFrame. Shapefile to make the clip, it is obligatory to introduce, Default: NULL}
 
 \item{years_sub}{integer. Years from which you want to do the subset, by DEFAULT it does to all the
-available years of TERRACLIMATE download data by \code{link{download_TERRACLIMATE}}., Default: 1958:1960}
+available years of TERRACLIMATE download data by \code{\link{download_TERRACLIMATE}}., Default: 1958:1960}
 
 \item{factor}{numeric. Scale factor that will be multiplied to the netcdf values, Default: 0.1}
 
@@ -61,11 +61,8 @@ rst <- subsseting_TERRACLIMATE(vars_id = 'ppt',
 Abatzoglou, J.T., S.Z. Dobrowski, S.A. Parks, K.C. Hegewisch, 2018, Terraclimate,
 a high-resolution global dataset of monthly climate and climatic water balance from 1958-2015, Scientific Data,
 }
-\seealso{
-Other subsetting functions: 
-\code{\link{subsetting_CMORPH.nc}()}
-}
 \author{
-Crhistian Cornejo#'
+Crhistian Cornejo
 }
-\concept{subsetting functions}
+\concept{subsetting functions
+#' @rdname subsseting_TERRACLIMATE}
