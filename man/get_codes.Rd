@@ -54,7 +54,7 @@ source("https://gitlab.com/snippets/1793256/raw");install("senamhiR")
 Other SENAMHI: 
 \code{\link{get_ITPA_SENAMHI}()},
 \code{\link{get_SENAMHI_data}()},
-\code{\link{stations_ITPA_SENAMHI}()}
+\code{\link{get_stations_ITPA_SENAMHI}()}
 }
 \author{
 Crhistian Cornejo

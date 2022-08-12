@@ -1,6 +1,6 @@
 #' @title Obtain information from SENAMHI on Advanced Thermo-Pluviometric information from existing stations, this information is available from 2011 to the present.
 #' You can quickly generate an Exploratory Data Analysis for the entire requested data set.
-#' @param year_filter character string year from where the data with information available for that particular year are granted
+#' @param year_filter interger year from where the data with information available for that particular year are granted. Only from 2011 to current year is available.
 #' @param station character vector of stations names optained from \code{\link{stations_ITPA_SENAMHI}}
 #' @param export_csv logical, If \code{TRUE} it will export the table as a .csv file on yout local home working directory.
 #' @param fast_EDA logical. Compute a fast Exploratory Data Analysis of the information.
@@ -35,7 +35,7 @@
 #' @importFrom ggplot2 theme_minimal
 #'
 get_ITPA_SENAMHI <- function(
-    year_filter,
+    year_filter = 2011,
     station = NULL,
     export_csv = TRUE,
     fast_EDA = TRUE){
@@ -71,12 +71,19 @@ get_ITPA_SENAMHI <- function(
     url_list[[i]] <- paste0(base,df[i],final)
   }
 
+
+  cl <- parallel::makeCluster(parallel::detectCores()-1)
+  doParallel::registerDoParallel(cl)
   cat('\f')
-  message('Reading data and returning data request from database...')
-  data_csv =  plyr::ldply(url_list, function(...)readr::read_csv(...,col_types = list()), .progress = 'text') %>%
+  message('Reading and returning data request from database... this will take a few seconds')
+
+  data_csv <- plyr::ldply(url_list, function(...)readr::read_csv(...,col_types = list()),
+                          .parallel = TRUE) %>%
     dplyr::filter(.,ESTACION %in% station & YEAR %in% year_filter) %>%
     tibble::as_tibble() %>%
-    dplyr::arrange(ESTACION)
+    dplyr::arrange(.,ESTACION)
+
+  parallel::stopCluster(cl)
 
   cat('\f')
 
@@ -90,17 +97,28 @@ get_ITPA_SENAMHI <- function(
     dplyr::ungroup() %>%
     tidyr::complete(DATES = seq(min(DATES), max(DATES), by = "day"),
                     fill = list(VALOR = NA)) %>%
-    dplyr::select(CODIGO,ESTACION,DATES,VAR,VAR_VALUES) %>%
-    tidyr::pivot_wider(names_from = VAR, values_from = VAR_VALUES) %>%
-    dplyr::arrange(CODIGO)
+    dplyr::select(DATES,CODIGO,ESTACION,VAR,VAR_VALUES) %>%
+    tidyr::pivot_wider(names_from = 'VAR', values_from = 'VAR_VALUES',values_fn = list) %>%
+    tidyr::unnest(cols = everything()) %>%
+    dplyr::select(-'NA')
 
-  df_export <- within(df_export, PP24[PP24 < 0] <- NA)
-  df_export <- within(df_export, TMAX[TMAX = -999] <- NA)
-  df_export <- within(df_export, TMIN[TMIN = -999] <- NA)
+  df_export <- df_export %>%
+    tidyr::complete(DATES = seq(min(DATES), max(DATES), by = "day"),
+                    fill = list(VALOR = NA)) %>%
+    dplyr::arrange(DATES)
+
+
+  df_export <- within(df_export, PP24[PP24 < 0    ] <- NA)
+  df_export <- within(df_export, TMAX[TMAX == -999] <- NA)
+  df_export <- within(df_export, TMAX[TMAX > 45   ] <- NA)
+  df_export <- within(df_export, TMIN[TMIN == -999] <- NA)
+  df_export <- within(df_export, TMIN[TMIN > 45   ] <- NA)
+
   df_export <- df_export %>% dplyr::mutate(TAVG = (TMAX+TMIN)/2)
 
   if (fast_EDA == TRUE) {
 
+    df_export_EDA <- df_export %>% tidyr::drop_na()
 
     EDA_1 <- SmartEDA::ExpData(data=df_export,type=2)
     EDA_1 <- EDA_1[-1:-3,c(-1,-3)]
@@ -109,26 +127,26 @@ get_ITPA_SENAMHI <- function(
     EDA_2 <- SmartEDA::ExpNumStat(df_export,by="A",gp=NULL,Qnt=seq(0,1,0.1),MesofShape=2,Outlier=TRUE,round=2)
     EDA_2 <- tibble::as_tibble(EDA_2)
 
-    f <- SmartEDA::ExpOutliers(df_export, varlist = c("PP24","TMAX","TMIN"), method = "3xStDev",  capping = c(0.1, 0.9), outflag = TRUE) %>%
+    f <- SmartEDA::ExpOutliers(df_export_EDA, varlist = c("PP24","TMAX","TMIN"), method = "3xStDev",  capping = c(0.1, 0.9), outflag = TRUE) %>%
       plyr::ldply(., tibble::as_tibble)
 
-    plot_1 <- SmartEDA::ExpNumViz(df_export,target=NULL,type=1,nlim=10,col=NULL,Page=c(2,2))
+    plot_1 <- SmartEDA::ExpNumViz(df_export_EDA,target=NULL,type=1,nlim=10,col=NULL,Page=c(2,2))
 
-    plot_2 <- SmartEDA::ExpOutQQ(df_export,
+    plot_2 <- SmartEDA::ExpOutQQ(df_export_EDA,
                                  nlim=4,
                                  fname=NULL,
                                  Page=c(2,2))
 
-    plot_3 <- SmartEDA::ExpNumViz(df_export[,5:7],
+    plot_3 <- SmartEDA::ExpNumViz(df_export_EDA[,5:7],
                                   Page=c(3,1),
                                   scatter=TRUE)
 
     plot_4 <- DataExplorer::plot_missing(df_export[,4:7],
-                                         title = 'Missins Values on SENAMHI DATA plot',
+                                         title = 'Missins Values on SENAMHI DATA',
                                          ggtheme = ggplot2::theme_minimal())
 
 
-    plot_5 <- suppressWarnings(DataExplorer::plot_boxplot(df_export,by = 'ESTACION',
+    plot_5 <- suppressWarnings(DataExplorer::plot_boxplot(df_export_EDA,by = 'ESTACION',
                                                           geom_boxplot_args = list("outlier.color" = "red"),
                                                           ncol = 2L,ggtheme = ggplot2::theme_minimal()))
 
@@ -150,20 +168,22 @@ get_ITPA_SENAMHI <- function(
                      Tabbles = tabbles_stats)
     print(all_list)
 
-    cat('\f')
-    message('Done!')
+    cat('Done!, take a look at the table, it probably has missing values\n')
+    message('Note: the exploratory data analysis is eliminating NAs, except for the count of missing values in the grap,likewise it is being carried out for all the stations, it is not made to be carried out separately yet. If you notice high values of more than 40°C in the temperatures, it is due to the fact that the original information has confused the commas for points, correct that manually!')
     return(all_list)
 
   }else{
 
     cat('\f')
-    message('Done!')
+    message('Done!, take a look at the table, it probably has missing values')
     print(df_export)
     return(df_export)
 
   }
 
   if (export_csv == TRUE) {
+
+    cat('Done!, take a look at the table, it probably has missing values\n')
     write.csv(x = df_export, file = paste0(glue::glue(getwd(),'/SENAMHI_ITPA/'),'data_request.csv'))
   }
 
@@ -176,7 +196,8 @@ get_ITPA_SENAMHI <- function(
 
 #' @title Get the available stations filter by year(s) for use in the function \code{\link{get_ITPA_SENAMHI}}.
 #' @param names vector. Vector names for use in the function to search matching with the information from the database.
-#' @param years Interger year from where the data with information available for that particular year are granted.Default: 2011:2015
+#' @param years Interger year from where the data with information available for that particular year are granted, just from 2011 to current year
+#' are available.Default: 2011:2015
 #' @param lonlat logical, if \code{TRUE} will returning a tibble with longitude and latitude, this is needed if you want
 #' to plot it. Default: FALSE
 #' @param plot_stations logical, \code{TRUE} will be plot on a Open Streat Map by leaflet the ubication of the stations matched. Default: FALSE
@@ -193,7 +214,7 @@ get_ITPA_SENAMHI <- function(
 #'                           plot_stations = TRUE)
 #'  }
 #' }
-#' @rdname stations_ITPA_SENAMHI
+#' @rdname get_stations_ITPA_SENAMHI
 #' @export
 #' @importFrom plyr ldply
 #' @importFrom readr read_csv
@@ -202,7 +223,7 @@ get_ITPA_SENAMHI <- function(
 #' @importFrom leaflet leaflet addTiles addMarkers
 #' @importFrom leaflet.extras addResetMapButton addSearchFeatures searchFeaturesOptions
 
-stations_ITPA_SENAMHI <- function(
+get_stations_ITPA_SENAMHI <- function(
     names=NULL,
     years = 2011:2015,
     lonlat = FALSE,
@@ -245,9 +266,12 @@ stations_ITPA_SENAMHI <- function(
 
     names <- glob2rx(names)
     if (length(names) > 1) names <- paste(names, collapse = "|")
+    cl <- parallel::makeCluster(parallel::detectCores()-1)
+    doParallel::registerDoParallel(cl)
     cat('\f')
     message('Reading data and returning data request from database...')
-    data_csv =  plyr::ldply(url_list, function(...)readr::read_csv(...,col_types = list()), .progress = 'text')
+    data_csv =  plyr::ldply(url_list, function(...)readr::read_csv(...,col_types = list()), .parallel = TRUE)
+    parallel::stopCluster(cl)
 
     filter_one <- data_csv %>%
       dplyr::filter(.,grepl(names, data_csv$ESTACION, ignore.case = TRUE)) %>%
@@ -300,7 +324,7 @@ stations_ITPA_SENAMHI <- function(
         dplyr::select(1,2,6)
 
       cat('\f')
-      cat('Only:',paste0(filter_one$ESTACION),'\nAre available for period years request from', head(years,1),'to',paste0(tail(years,1),'.'),
+      cat('Only:',paste0(unique(filter_one$ESTACION)),'\nAre available for period years request from', head(years,1),'to',paste0(tail(years,1),'.'),
           '\nPlease use this names exactly of stations to get values on the function\n"get_ITPA_SENAMHI"')
       message('Done!')
       return(filter_two)

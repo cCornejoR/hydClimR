@@ -6,14 +6,14 @@
 You can quickly generate an Exploratory Data Analysis for the entire requested data set.}
 \usage{
 get_ITPA_SENAMHI(
-  year_filter,
+  year_filter = 2011,
   station = NULL,
   export_csv = TRUE,
   fast_EDA = TRUE
 )
 }
 \arguments{
-\item{year_filter}{character string year from where the data with information available for that particular year are granted}
+\item{year_filter}{interger year from where the data with information available for that particular year are granted. Only from 2011 to current year is available.}
 
 \item{station}{character vector of stations names optained from \code{\link{stations_ITPA_SENAMHI}}}
 
@@ -49,6 +49,6 @@ missing_values <- test[[3]]
 Other SENAMHI: 
 \code{\link{get_SENAMHI_data}()},
 \code{\link{get_codes}()},
-\code{\link{stations_ITPA_SENAMHI}()}
+\code{\link{get_stations_ITPA_SENAMHI}()}
 }
 \concept{SENAMHI}
