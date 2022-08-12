@@ -1,0 +1,9 @@
+url: https://ccornejor.github.io/hydClimR/
+template:
+  bootstrap: 5
+  bootswatch: Flatly
+  bslib:
+    pkgdown-nav-height: 85px
+development:
+  mode: auto
+
