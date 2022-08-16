@@ -230,6 +230,7 @@ get_stations_ITPA_SENAMHI <- function(
     plot_stations = FALSE
 ){
 
+  options(warn = -1)
   if (!lonlat  & plot_stations == TRUE) {
     stop('"lonlat" argument must be TRUE for plot stations ubications', call. = FALSE)
   }
@@ -313,7 +314,7 @@ get_stations_ITPA_SENAMHI <- function(
       print(map)
 
       cat('\f')
-      cat('Only:',paste0(filter_one$ESTACION),'\nAre available for period years request from', head(years,1),'to',paste0(tail(years,1),'.'),
+      cat('Only:',paste0(unique(filter_one$ESTACION)),'\nAre available for period years request from', head(years,1),'to',paste0(tail(years,1),'.'),
           '\nPlease use this names exactly of stations to get values on the function\n"get_ITPA_SENAMHI"')
 
       return(filter_one)

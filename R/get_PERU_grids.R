@@ -50,14 +50,14 @@ download_RAIN4PE <- function(
     url_rainfal <- 'https://datapub.gfz-potsdam.de/download/10.5880.PIK.2020.010enouiv/RAIN4PE_daily_0.1d_1981_2015_v1.0.nc.zip'
 
 
-    outp <- glue::glue(dsn,'/daily/RAIN4PE/')
+    outp <- glue::glue(dsn,'/download_RAIN4PE/')
     ifelse(!dir.exists(outp),xfun::dir_create(outp),print('already exist!'))
 
     destfile <- paste0(outp,basename(url_rainfal))
     destfile_unzip <- gsub(pattern = ".zip", "", destfile)
 
     cat('\f')
-    cat('downloading data, waiting time depends on your internet speed, be patient!\n')
+    message('downloading data, waiting time depends on your internet speed, be patient!\n')
     download.file(url = url_rainfal,destfile = destfile,
                   mode = 'wb', method = 'curl')
 
@@ -181,7 +181,7 @@ download_RAIN4PE <- function(
 #### PISCO
 ################################################################################
 
-#' @title  Download PISCO grid daily and monthly data and subsetting for a basin extend.#'
+#' @title  Download PISCO grid daily and monthly data and subsetting for a basin extend.
 #' @param var character. variables that will be downloaded by the function, \code{c('Prec', 'PET', 'Temp')} are available.
 #' @param dsn path. Directory to which you want to store the downloaded data.
 #' @param tres character. Temporal resolution. \code{"daily"} or \code{"monthly"}.
@@ -224,6 +224,11 @@ download_PISCO <- function(
 
   ##web scrapping to download PISCO data
   base_url <- 'https://iridl.ldeo.columbia.edu/SOURCES/.SENAMHI/.HSR/.PISCO/'
+
+  if (tres == 'hourly' && var != 'Prec' && !is.null(shp)) {
+    stop('Hourly resolution is just for precipitation variable, please change it to var = "Prec" and shapefile argument must be NULL', call. = FALSE)
+  }
+
 
   if (var == 'Prec') {
 
@@ -348,6 +353,8 @@ download_PISCO <- function(
       gc(reset=T)
 
       if (tres == 'hourly') {
+
+        shp <- NULL
 
         url <- 'https://figshare.com/ndownloader/articles/17148401/versions/2' #from Andrian Huerta fishared page
         outp <- glue::glue(dsn,'/download_PISCO/{var}/{tres}/')
@@ -478,7 +485,7 @@ download_PISCO <- function(
       nc_close(ncnew)
       gc(reset=TRUE)
       cat('\f')
-      cat('-------- Finish donwload and subsetting!! -----------\n')
+      cat('-------- Finish donwload and subsetting PET grid data!! -----------\n')
     } else {#end for conditional shp on PET variable
 
       url_PET <- 'https://iridl.ldeo.columbia.edu/SOURCES/.SENAMHI/.HSR/.PISCO/.PET/.v1p1/.stable/'
@@ -510,6 +517,7 @@ download_PISCO <- function(
 
   if (var == 'Temp') {
 
+    base_url <- 'https://iridl.ldeo.columbia.edu/SOURCES/.SENAMHI/.HSR/.PISCO/'
     if (is.null(shp)==FALSE) {
 
       shp <- rgdal::readOGR(shp)
@@ -536,7 +544,6 @@ download_PISCO <- function(
 
       for (i in 1:length(vars)) {
         ifelse(!dir.exists(outp[i]),xfun::dir_create(outp[i]),print('already exist!'))
-        # ifelse(!dir.exists(outp[2]),xfun::dir_create(outp[2]),print('already exist!'))
         update_url[i] <- paste0(base_url,'.Temp/.v1p1/','.',vars[i],'/.',version,'/.',tres,'/.',vars[i],'/data.nc')
         cat('\f')
         cat('--------------------------------------------------------------------------\n')
@@ -548,17 +555,14 @@ download_PISCO <- function(
                       mode = 'wb',
                       method = 'curl')
 
-
-
-        new_name[i] <- gsub('data.nc', paste0('PISCO','_',tres,'_',vars[i],'_v1p1.nc'), as.character(destfile[i]))
-
+        new_name[[i]] <- gsub('data.nc', paste0('PISCO','_',tres,'_',vars[i],'_v1p1.nc'), as.character(destfile[i]))
 
         # rename it
-        file.rename(from = destfile[i], to = new_name[i])
+        file.rename(from = destfile[i], to = new_name[[i]])
 
         # Open netcdf
 
-        nc   <- nc_open(new_name[i])
+        nc   <- nc_open(new_name[[i]])
 
         # First dimension
         lon      <- ncvar_get(nc, 'X')
@@ -638,11 +642,11 @@ download_PISCO <- function(
                       mode = 'wb',
                       method = 'curl')
 
-        new_name[i] <- gsub('data.nc', paste0('PISCO','_',tres,'_',vars[i],'_v1p1.nc'), as.character(destfile[i]))
+        new_name[[i]] <- gsub('data.nc', paste0('PISCO','_',tres,'_',vars[i],'_v1p1.nc'), as.character(destfile[i]))
 
 
         # rename it
-        file.rename(from = destfile[i], to = new_name[i])
+        file.rename(from = destfile[i], to = new_name[[i]])
 
         gc(reset=T)
 

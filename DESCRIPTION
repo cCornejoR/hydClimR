@@ -1,6 +1,6 @@
 Package: hydClimR
 Title: Download and Pre-Process Satelital and weather stations data in R.
-Version: 0.15.0
+Version: 0.15.1
 Date: 2022-08-01
 Authors@R: person("Crhistian","Cornejo",
            role = c("aut","cre"), 
@@ -67,3 +67,4 @@ Imports:
 	readxl,
 	exactextractr,
 Config/testthat/edition: 3
+Config/testthat/parallel: true

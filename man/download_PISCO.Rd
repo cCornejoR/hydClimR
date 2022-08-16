@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_PERU_grids.R
 \name{download_PISCO}
 \alias{download_PISCO}
-\title{Download PISCO grid daily and monthly data and subsetting for a basin extend.#'}
+\title{Download PISCO grid daily and monthly data and subsetting for a basin extend.}
 \usage{
 download_PISCO(
   var = c("Prec", "PET", "Temp"),
@@ -27,7 +27,7 @@ download_PISCO(
 \item{name_roi}{character. Name of the area or basin with which the subsetting to the grid will be done.}
 }
 \description{
-Download PISCO grid daily and monthly data and subsetting for a basin extend.#'
+Download PISCO grid daily and monthly data and subsetting for a basin extend.
 }
 \examples{
 \dontrun{
