@@ -21,8 +21,8 @@ You can install the development version of RWeatherTools from
 
 ``` r
 # install.packages("devtools") 
-devtools::install_github("cCornejoR/RWeatherTools")
-library(RWeatherTools)
+devtools::install_github("cCornejoR/hydclimR")
+library(hydclimR)
 ```
 
 ## Example
